@@ -16,7 +16,7 @@ export const DEFAULT_DATA: PortfolioData = {
     role: "Fullstack Developer, UI Designer & Automation Enthusiast",
     description: "Saya mahasiswa Teknik Informatika di Politeknik Negeri Malang yang berfokus pada pengembangan solusi digital yang menggabungkan desain, fungsionalitas, dan automasi. Memiliki keahlian di bidang UI/UX Design dan Web Development menggunakan React, Next.js, TypeScript, Laravel, dan MySQL, serta mampu membangun sistem automation dan integrasi untuk meningkatkan efisiensi proses digital. Saya antusias dalam menciptakan aplikasi interaktif dan solusi inovatif berbasis teknologi untuk menjawab tantangan industri masa depan.",
     photo: "https://i.imgur.com/62ngWnG.jpeg",
-    cvUrl: "https://drive.google.com/file/d/18WNOVn2_kiYB6xAy1PyAAXnbDmnjvvRn/view?usp=drive_link",
+    cvUrl: "https://drive.google.com/file/d/1nFC6lcMmXKVNYBlWlsoJTMsvk6_FPfsP/view?usp=sharing",
     headline: ""
   },
   education: [
@@ -148,7 +148,7 @@ export async function setupFirestoreCollections() {
     batch.set(docRef, {
       id: 'doc_sample_1',
       name: 'Curriculum Vitae',
-      url: 'https://drive.google.com/file/d/18WNOVn2_kiYB6xAy1PyAAXnbDmnjvvRn/view'
+      url: 'https://drive.google.com/file/d/1nFC6lcMmXKVNYBlWlsoJTMsvk6_FPfsP/view?usp=sharing'
     }, { merge: true });
 
     // 8. Setup Socials/Contact Collection dengan sample data
