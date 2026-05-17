@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export interface Education {
   id: string;
@@ -64,10 +64,10 @@ export interface PortfolioData {
 
 const DEFAULT_DATA: PortfolioData = {
   about: {
-    name: "Alvino",
+    name: "AlvinoS",
     role: "Fullstack Developer & UI Designer",
     description: "I am a passionate developer with a focus on creating beautiful and functional web applications. I love learning new technologies and solving complex problems.",
-    photo: "/profile_placeholder.png",
+    photo: "https://i.imgur.com/62ngWnG.jpeg",
     cvUrl: "#",
     headline: "crafting purposeful digital solutions."
   },

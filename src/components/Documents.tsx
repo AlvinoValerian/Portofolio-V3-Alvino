@@ -1,7 +1,7 @@
+import { FileText, Plus, X } from 'lucide-react';
 import { motion } from 'motion/react';
-import { PortfolioData, Document } from '../hooks/usePortfolioData';
-import { FileText, Plus, Trash2, X, Check, Edit2 } from 'lucide-react';
 import { useState } from 'react';
+import { Document, PortfolioData } from '../hooks/usePortfolioData';
 
 interface DocumentsProps {
   data: PortfolioData;
@@ -90,7 +90,7 @@ export default function Documents({ data, saveData, isAdmin }: DocumentsProps) {
           <motion.div 
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mt-8 glass p-8 rounded-[2rem] max-w-md space-y-4"
+            className="mt-8 glass p-8 rounded-4xl max-w-md space-y-4"
           >
             <input 
               className="w-full bg-white/5 border border-white/10 p-3 rounded-xl text-sm outline-none"

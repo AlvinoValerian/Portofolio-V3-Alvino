@@ -1,7 +1,7 @@
+import { Cpu, Database, Layout, Palette, Plus, X } from 'lucide-react';
 import { motion } from 'motion/react';
+import { FormEvent, useState } from 'react';
 import { PortfolioData, Skill } from '../hooks/usePortfolioData';
-import { Plus, X, Trash2, Palette, Layout, Database, Cpu } from 'lucide-react';
-import { useState, FormEvent } from 'react';
 
 interface SkillsProps {
   data: PortfolioData;
@@ -36,7 +36,7 @@ export default function Skills({ data, saveData, isAdmin }: SkillsProps) {
   };
 
   return (
-    <section id="skills" className="min-h-screen py-20 px-6 bg-white/[0.02] snap-start flex items-center justify-center">
+    <section id="skills" className="min-h-screen py-20 px-6 bg-white/2 snap-start flex items-center justify-center">
       <div className="max-w-7xl mx-auto w-full">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}

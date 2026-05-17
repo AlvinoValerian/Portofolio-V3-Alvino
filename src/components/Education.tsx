@@ -1,7 +1,7 @@
+import { Building, Calendar, Edit2, GraduationCap, Plus, Trash2 } from 'lucide-react';
 import { motion } from 'motion/react';
-import { PortfolioData, Education } from '../hooks/usePortfolioData';
-import { GraduationCap, Edit2, Plus, Trash2, X, Check, Calendar, Building } from 'lucide-react';
 import { useState } from 'react';
+import { Education, PortfolioData } from '../hooks/usePortfolioData';
 
 interface EducationProps {
   data: PortfolioData;
@@ -67,7 +67,7 @@ export default function EducationPanel({ data, saveData, isAdmin }: EducationPro
           )}
         </motion.div>
 
-        <div className="relative border-l border-white/10 ml-[17px] space-y-12">
+        <div className="relative border-l border-white/10 ml-4.25 space-y-12">
           {data.education.map((item, index) => (
             <motion.div 
               key={item.id}
@@ -77,7 +77,7 @@ export default function EducationPanel({ data, saveData, isAdmin }: EducationPro
               transition={{ delay: index * 0.1 }}
               className="relative pl-8"
             >
-              <div className={`absolute -left-[5px] top-1 w-2.5 h-2.5 rounded-full ${index === 0 ? 'bg-primary shadow-[0_0_8px_#3b82f6]' : 'bg-white/20'}`} />
+              <div className={`absolute -left-1.25 top-1 w-2.5 h-2.5 rounded-full ${index === 0 ? 'bg-primary shadow-[0_0_8px_#3b82f6]' : 'bg-white/20'}`} />
               
               <div className="group relative">
                 {isAdmin && (

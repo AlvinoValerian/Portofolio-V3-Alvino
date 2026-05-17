@@ -1,7 +1,7 @@
-import { motion, AnimatePresence } from 'motion/react';
+import { Check, Code, Edit2, ExternalLink, Figma, Github, Plus, Trash2, X } from 'lucide-react';
+import { AnimatePresence, motion } from 'motion/react';
+import { FormEvent, useState } from 'react';
 import { PortfolioData, Project } from '../hooks/usePortfolioData';
-import { Github, Figma, ExternalLink, Plus, Edit2, Trash2, X, Check, Code } from 'lucide-react';
-import { useState, FormEvent } from 'react';
 
 interface ProjectsProps {
   data: PortfolioData;
@@ -67,7 +67,7 @@ export default function Projects({ data, saveData, isAdmin }: ProjectsProps) {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="group relative overflow-hidden rounded-[2rem] bg-black border border-white/10 aspect-video cursor-pointer"
+              className="group relative overflow-hidden rounded-4xl bg-black border border-white/10 aspect-video cursor-pointer"
               onClick={() => setSelectedProject(project)}
             >
               <img 
@@ -77,7 +77,7 @@ export default function Projects({ data, saveData, isAdmin }: ProjectsProps) {
                 referrerPolicy="no-referrer"
                 onError={(e) => { (e.target as HTMLImageElement).src = `https://picsum.photos/seed/${project.id}/800/600`; }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-6 flex flex-col justify-end">
+              <div className="absolute inset-0 bg-linear-to-t from-black via-black/20 to-transparent p-6 flex flex-col justify-end">
                  {isAdmin && (
                    <div className="absolute top-6 right-6 flex gap-2 z-10" onClick={e => e.stopPropagation()}>
                       <button onClick={() => setIsEditing(project)} className="p-2 bg-white/10 rounded-xl hover:bg-white/20 transition-colors"><Edit2 size={12} /></button>
@@ -111,7 +111,7 @@ export default function Projects({ data, saveData, isAdmin }: ProjectsProps) {
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
-              className="glass max-w-2xl w-full rounded-[2rem] md:rounded-[2.5rem] overflow-hidden overflow-y-auto max-h-[90vh] custom-scrollbar"
+              className="glass max-w-2xl w-full rounded-4xl md:rounded-[2.5rem] overflow-hidden overflow-y-auto max-h-[90vh] custom-scrollbar"
               onClick={e => e.stopPropagation()}
             >
               <div className="aspect-video w-full">
@@ -133,17 +133,17 @@ export default function Projects({ data, saveData, isAdmin }: ProjectsProps) {
                 <p className="text-white/60 mb-8 leading-relaxed text-sm">{selectedProject.description}</p>
                 <div className="flex flex-wrap gap-4">
                   {selectedProject.github && (
-                    <a href={selectedProject.github} target="_blank" className="flex-1 min-w-[120px] flex items-center justify-center gap-2 glass-accent px-6 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all hover:bg-white hover:text-black">
+                    <a href={selectedProject.github} target="_blank" className="flex-1 min-w-30 flex items-center justify-center gap-2 glass-accent px-6 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all hover:bg-white hover:text-black">
                       <Github size={14} /> GITHUB
                     </a>
                   )}
                   {selectedProject.figma && (
-                    <a href={selectedProject.figma} target="_blank" className="flex-1 min-w-[120px] flex items-center justify-center gap-2 glass-accent px-6 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest text-pink-400 border-pink-400/10 transition-all hover:bg-pink-400 hover:text-white">
+                    <a href={selectedProject.figma} target="_blank" className="flex-1 min-w-30 flex items-center justify-center gap-2 glass-accent px-6 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest text-pink-400 border-pink-400/10 transition-all hover:bg-pink-400 hover:text-white">
                       <Figma size={14} /> FIGMA
                     </a>
                   )}
                   {selectedProject.liveUrl && (
-                    <a href={selectedProject.liveUrl} target="_blank" className="flex-1 min-w-[120px] flex items-center justify-center gap-2 glass-accent px-6 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest text-emerald-400 border-emerald-400/10 transition-all hover:bg-emerald-400 hover:text-white">
+                    <a href={selectedProject.liveUrl} target="_blank" className="flex-1 min-w-30 flex items-center justify-center gap-2 glass-accent px-6 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest text-emerald-400 border-emerald-400/10 transition-all hover:bg-emerald-400 hover:text-white">
                       <ExternalLink size={14} /> LIVE APP
                     </a>
                   )}

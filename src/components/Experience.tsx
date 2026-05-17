@@ -1,7 +1,7 @@
+import { Briefcase, Building, Calendar, Edit2, Plus, Trash2 } from 'lucide-react';
 import { motion } from 'motion/react';
-import { PortfolioData, Experience } from '../hooks/usePortfolioData';
-import { Briefcase, Plus, Edit2, Trash2, X, Check, Calendar, MapPin, Building } from 'lucide-react';
 import { useState } from 'react';
+import { Experience, PortfolioData } from '../hooks/usePortfolioData';
 
 interface ExperienceProps {
   data: PortfolioData;
@@ -38,7 +38,7 @@ export default function ExperiencePanel({ data, saveData, isAdmin }: ExperienceP
   };
 
   return (
-    <section id="experience" className="min-h-screen py-20 px-6 bg-white/[0.02] snap-start flex items-center">
+    <section id="experience" className="min-h-screen py-20 px-6 bg-white/2 snap-start flex items-center">
       <div className="max-w-5xl mx-auto w-full">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -65,7 +65,7 @@ export default function ExperiencePanel({ data, saveData, isAdmin }: ExperienceP
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="p-5 md:p-6 bg-white/5 rounded-[1.5rem] border border-white/5 hover:border-white/10 transition-all group relative"
+              className="p-5 md:p-6 bg-white/5 rounded-3xl border border-white/5 hover:border-white/10 transition-all group relative"
             >
               {isAdmin && (
                 <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -101,7 +101,7 @@ export default function ExperiencePanel({ data, saveData, isAdmin }: ExperienceP
                     </div>
                   </div>
                   <div className="mb-2">
-                    <h4 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70">{exp.title}</h4>
+                    <h4 className="text-xl font-bold bg-clip-text text-transparent bg-linear-to-r from-white to-white/70">{exp.title}</h4>
                   </div>
                   <p className="text-white/50 text-[11px] leading-relaxed line-clamp-3 group-hover:line-clamp-none transition-all">{exp.description}</p>
                 </div>

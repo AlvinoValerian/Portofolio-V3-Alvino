@@ -3,45 +3,60 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, FormEvent } from 'react';
-import { usePortfolioData } from './hooks/usePortfolioData';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Education from './components/Education';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import Experience from './components/Experience';
+import { Check, Lock } from 'lucide-react';
+import { AnimatePresence, motion } from 'motion/react';
+import { FormEvent, useState } from 'react';
 import Documents from './components/Documents';
+import Education from './components/Education';
+import Experience from './components/Experience';
 import Footer from './components/Footer';
-import { motion, AnimatePresence } from 'motion/react';
-import { Lock, Check } from 'lucide-react';
-
+import Hero from './components/Hero';
+import Navbar from './components/Navbar';
+import Projects from './components/Projects';
+import Skills from './components/Skills';
 import { StarsBackground } from './components/StarsBackground';
+import { useFirestorePortfolioData } from './hooks/useFirestorePortfolioData';
+import { verifyAdminPassword } from './services/adminService';
 
 export default function App() {
-  const { data, saveData, isLoaded } = usePortfolioData();
+  const { data, saveData, isLoaded } = useFirestorePortfolioData();
   const [isAdmin, setIsAdmin] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [password, setPassword] = useState('');
+  const [loginLoading, setLoginLoading] = useState(false);
+  const [loginError, setLoginError] = useState('');
 
   if (!isLoaded) return null;
 
   const handleToggleAdmin = (targetVal: boolean) => {
     if (targetVal) {
       setShowLogin(true);
+      setLoginError('');
     } else {
       setIsAdmin(false);
     }
   };
 
-  const handleLogin = (e: FormEvent) => {
+  const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
-    if (password === 'admin31') {
-      setIsAdmin(true);
-      setShowLogin(false);
-      setPassword('');
-    } else {
-      alert('Wrong password!');
+    setLoginLoading(true);
+    setLoginError('');
+    
+    try {
+      const isValid = await verifyAdminPassword(password);
+      if (isValid) {
+        setIsAdmin(true);
+        setShowLogin(false);
+        setPassword('');
+      } else {
+        setLoginError('Password salah!');
+        setPassword('');
+      }
+    } catch (error) {
+      setLoginError('Error saat verifikasi password');
+      console.error(error);
+    } finally {
+      setLoginLoading(false);
     }
   };
 
@@ -68,7 +83,7 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/90 backdrop-blur-md"
+            className="fixed inset-0 z-100 flex items-center justify-center p-6 bg-black/90 backdrop-blur-md"
           >
             <motion.div 
               initial={{ scale: 0.9, y: 20 }}
@@ -90,12 +105,14 @@ export default function App() {
                   placeholder="Password"
                   className="w-full glass p-4 rounded-2xl outline-none focus:border-white/40 text-center"
                   autoFocus
+                  disabled={loginLoading}
                 />
+                {loginError && <p className="text-red-400 text-sm">{loginError}</p>}
                 <div className="flex gap-2">
-                   <button type="submit" className="flex-1 bg-white text-black py-4 rounded-2xl font-bold flex items-center justify-center gap-2">
-                    <Check size={18} /> Login
+                   <button type="submit" disabled={loginLoading} className="flex-1 bg-white text-black py-4 rounded-2xl font-bold flex items-center justify-center gap-2 disabled:opacity-50">
+                    <Check size={18} /> {loginLoading ? 'Loading...' : 'Login'}
                   </button>
-                  <button type="button" onClick={() => setShowLogin(false)} className="px-6 glass rounded-2xl text-white/40">X</button>
+                  <button type="button" onClick={() => setShowLogin(false)} disabled={loginLoading} className="px-6 glass rounded-2xl text-white/40 disabled:opacity-50">X</button>
                 </div>
               </form>
             </motion.div>
@@ -108,7 +125,7 @@ export default function App() {
         <motion.div 
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="fixed bottom-6 right-6 z-[60] glass px-4 py-2 rounded-full border-blue-500/30 text-blue-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2"
+          className="fixed bottom-6 right-6 z-60 glass px-4 py-2 rounded-full border-blue-500/30 text-blue-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2"
         >
           <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
           Edit Mode Active

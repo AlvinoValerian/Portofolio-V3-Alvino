@@ -1,7 +1,7 @@
+import { Check, Edit2, ExternalLink, FileText, Sparkles, X } from 'lucide-react';
 import { motion } from 'motion/react';
+import { useEffect, useState } from 'react';
 import { PortfolioData } from '../hooks/usePortfolioData';
-import { ExternalLink, Edit2, Check, X, FileText, Sparkles, MapPin } from 'lucide-react';
-import { useState } from 'react';
 
 interface HeroProps {
   data: PortfolioData;
@@ -12,6 +12,12 @@ interface HeroProps {
 export default function Hero({ data, saveData, isAdmin }: HeroProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editData, setEditData] = useState(data.about);
+
+  useEffect(() => {
+    if (!isEditing) {
+      setEditData(data.about);
+    }
+  }, [data.about, isEditing]);
 
   const handleSave = () => {
     saveData({ ...data, about: editData });
@@ -40,7 +46,7 @@ export default function Hero({ data, saveData, isAdmin }: HeroProps) {
           <div className="relative mb-8 group">
             {/* White Glow Background */}
             <div className="absolute inset-0 bg-white/20 blur-[100px] rounded-full scale-110 pointer-events-none" />
-            <div className="absolute inset-4 bg-white/10 blur-[40px] rounded-full scale-125 pointer-events-none" />
+            <div className="absolute inset-4 bg-white/10 blur-2xl rounded-full scale-125 pointer-events-none" />
             
             <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/30 relative z-10">
               <img 
@@ -138,7 +144,7 @@ export default function Hero({ data, saveData, isAdmin }: HeroProps) {
               <span className="text-mono-label mb-0 uppercase tracking-[0.2em]">{data.about.role}</span>
             </div>
             <h2 className="text-4xl sm:text-5xl md:text-7xl font-display font-bold leading-[1.1] tracking-tighter mb-8">
-              I'm <span className="text-primary">{data.about.name}</span>, {data.about.headline}
+              Halo Saya <span className="text-primary">{data.about.name}</span> {data.about.headline}
             </h2>
             <motion.p 
               className="text-white/60 text-lg leading-relaxed max-w-2xl mb-8"

@@ -1,7 +1,7 @@
+import { LogIn, Menu, Settings, X } from 'lucide-react';
 import { motion } from 'motion/react';
+import { useEffect, useState } from 'react';
 import { usePortfolioData } from '../hooks/usePortfolioData';
-import { Menu, X, LogIn, Settings, User, GraduationCap, Cpu, Code, Briefcase } from 'lucide-react';
-import { useState, useEffect } from 'react';
 
 interface NavbarProps {
   isAdmin: boolean;
@@ -44,7 +44,7 @@ export default function Navbar({ isAdmin, setIsAdmin }: NavbarProps) {
     { name: 'Skill', href: '#skills' },
     { name: 'Project', href: '#projects' },
     { name: 'Experience', href: '#experience' },
-    { name: 'File', href: '#documents' },
+    { name: 'Dokumen', href: '#documents' },
   ];
 
   return (
@@ -80,7 +80,7 @@ export default function Navbar({ isAdmin, setIsAdmin }: NavbarProps) {
                   {isActive && (
                     <motion.div 
                       layoutId="activeNavIndicator"
-                      className="absolute -bottom-1 left-0 right-0 h-[2px] bg-primary rounded-full"
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full"
                       transition={{ type: "spring", stiffness: 350, damping: 30 }}
                     />
                   )}

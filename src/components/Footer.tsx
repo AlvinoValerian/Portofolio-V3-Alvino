@@ -1,7 +1,7 @@
-import { motion, AnimatePresence } from 'motion/react';
-import { usePortfolioData, PortfolioData, Social } from '../hooks/usePortfolioData';
-import { Plus, X, Check, Globe, Github, Linkedin, Twitter, Instagram, Mail, Youtube } from 'lucide-react';
-import { useState, FormEvent } from 'react';
+import { Github, Globe, Instagram, Linkedin, Mail, Plus, Twitter, X, Youtube } from 'lucide-react';
+import { AnimatePresence, motion } from 'motion/react';
+import { FormEvent, useState } from 'react';
+import { PortfolioData } from '../hooks/usePortfolioData';
 
 interface FooterProps {
   data: PortfolioData;
@@ -81,9 +81,9 @@ export default function Footer({ data, saveData, isAdmin }: FooterProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[110] flex items-center justify-center p-6 bg-black/95 backdrop-blur-md"
+            className="fixed inset-0 z-110 flex items-center justify-center p-6 bg-black/95 backdrop-blur-md"
           >
-            <form onSubmit={handleAdd} className="glass p-8 rounded-[2rem] max-w-sm w-full space-y-4">
+            <form onSubmit={handleAdd} className="glass p-8 rounded-4xl max-w-sm w-full space-y-4">
                <div className="flex justify-between items-center mb-2">
                  <h3 className="text-sm font-bold uppercase tracking-widest">Add Social Link</h3>
                  <button type="button" onClick={() => setIsAdding(false)}><X size={18} /></button>

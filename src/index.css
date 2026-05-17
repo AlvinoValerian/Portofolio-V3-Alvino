@@ -6,11 +6,10 @@
   --font-display: "Space Grotesk", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
   --color-primary: #3b82f6;
-  --color-bg-dark: #0d0d0d;
 }
 
 body {
-  @apply bg-bg-dark text-white selection:bg-primary/30 antialiased;
+  @apply bg-black text-white selection:bg-primary/30 antialiased;
 }
 
 .glass {
