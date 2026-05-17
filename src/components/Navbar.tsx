@@ -44,7 +44,7 @@ export default function Navbar({ isAdmin, setIsAdmin }: NavbarProps) {
     { name: 'Skill', href: '#skills' },
     { name: 'Project', href: '#projects' },
     { name: 'Experience', href: '#experience' },
-    { name: 'Dokumen', href: '#documents' },
+    { name: 'Document', href: '#documents' },
   ];
 
   return (
